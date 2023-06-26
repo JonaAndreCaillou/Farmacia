@@ -1,6 +1,7 @@
 package controllers;
 
 import java.awt.Color;
+
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import static models.EmployeesDao.*;
@@ -31,7 +32,9 @@ public class SettingsController implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-
+        if (e.getSource() == views.jLabelCustomers) {
+            views.jPanelCustomers.setBackground(new Color(0, 102, 102));
+        }
     }
 
     @Override
@@ -46,24 +49,25 @@ public class SettingsController implements MouseListener {
 
     @Override
     public void mouseEntered(MouseEvent e) {
+
         if (e.getSource() == views.jLabelProduct) {
-            views.jPanelProduct.setBackground(new Color(0,102,102));
+            views.jPanelProduct.setBackground(new Color(0, 102, 102));
         } else if (e.getSource() == views.jLabelPurchises) {
-            views.jPanelPurchises.setBackground(new Color(0,102,102));
+            views.jPanelPurchises.setBackground(new Color(0, 102, 102));
         } else if (e.getSource() == views.jLabelSales) {
-            views.jPanelSales.setBackground(new Color(0,102,102));
+            views.jPanelSales.setBackground(new Color(0, 102, 102));
         } else if (e.getSource() == views.jLabelCustomers) {
-            views.jPanelCustomers.setBackground(new Color(0,102,102));
+            views.jPanelCustomers.setBackground(new Color(0, 102, 102));
         } else if (e.getSource() == views.jLabelEmplois) {
-            views.jPanelEmplois.setBackground(new Color(0,102,102));
+            views.jPanelEmplois.setBackground(new Color(0, 102, 102));
         } else if (e.getSource() == views.jLabelSuppliers) {
-            views.jPanelSuppliers.setBackground(new Color(0,102,102));
+            views.jPanelSuppliers.setBackground(new Color(0, 102, 102));
         } else if (e.getSource() == views.jLabelCategories) {
-            views.jPanelCategories.setBackground(new Color(0,102,102));
+            views.jPanelCategories.setBackground(new Color(0, 102, 102));
         } else if (e.getSource() == views.jLabelReports) {
-            views.jPanelReports.setBackground(new Color(0,102,102));
+            views.jPanelReports.setBackground(new Color(0, 102, 102));
         } else if (e.getSource() == views.jLabelSettings) {
-            views.jPanelSettings.setBackground(new Color(0,102,102));
+            views.jPanelSettings.setBackground(new Color(0, 102, 102));
         }
     }
 
@@ -77,6 +81,7 @@ public class SettingsController implements MouseListener {
             views.jPanelSales.setBackground(new Color(17, 43, 65));
         } else if (e.getSource() == views.jLabelCustomers) {
             views.jPanelCustomers.setBackground(new Color(17, 43, 65));
+
         } else if (e.getSource() == views.jLabelEmplois) {
             views.jPanelEmplois.setBackground(new Color(17, 43, 65));
         } else if (e.getSource() == views.jLabelSuppliers) {
@@ -88,6 +93,7 @@ public class SettingsController implements MouseListener {
         } else if (e.getSource() == views.jLabelSettings) {
             views.jPanelSettings.setBackground(new Color(17, 43, 65));
         }
+
     }
 
     //Asignar el perfil del usuario

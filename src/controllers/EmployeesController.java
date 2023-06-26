@@ -1,5 +1,6 @@
 package controllers;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -101,8 +102,8 @@ public class EmployeesController implements ActionListener, MouseListener, KeyLi
             }
             //Modificar empleados
         } else if (e.getSource() == views.btn_update_employee) {
-            if (views.txt_employee_id.equals("")) {
-                JOptionPane.showMessageDialog(null, "seleccion una fila para continuar");
+            if (views.txt_employee_id.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Seleccione una fila de la tabla para continuar.");
             } else {
                 //verificar si los campos estan vacios 
                 if (views.txt_employee_id.getText().equals("")
@@ -134,6 +135,7 @@ public class EmployeesController implements ActionListener, MouseListener, KeyLi
             }
 
             //Eliminar un empleado
+            //Selecciona un empleado de la tabla y eliminar.
         } else if (e.getSource() == views.btn_delete_employee) {
             int row = views.employee_table.getSelectedRow();
 
@@ -155,7 +157,7 @@ public class EmployeesController implements ActionListener, MouseListener, KeyLi
                 }
                 listAllEmployees();
             }
-
+            // Cancelar pone en blanco las cajas de texto.
         } else if (e.getSource() == views.btn_cancel_employee) {
             cleanTxt();
 
@@ -163,6 +165,8 @@ public class EmployeesController implements ActionListener, MouseListener, KeyLi
             views.txt_employee_password.setEnabled(true);
             views.txt_employee_id.setEnabled(true);
 
+            //esto es de la pestaña Perfil que es independiente de cada Empleado.
+            //En esta pestaña se podra actualizar la contraseña.
         } else if (e.getSource() == views.btn_update_date) {
             //Recolectar informacion de las cajas pasword
             String password = String.valueOf(views.txt_password_modify.getPassword());
@@ -207,6 +211,7 @@ public class EmployeesController implements ActionListener, MouseListener, KeyLi
                 row[6] = list.get(i).getEmail();
                 model.addRow(row);
             }
+            views.employee_table.setModel(model);
         }
     }
 
@@ -231,6 +236,7 @@ public class EmployeesController implements ActionListener, MouseListener, KeyLi
             views.btn_register_employee.setEnabled(false);
             views.cmb_rol.setEditable(false);
         } else if (e.getSource() == views.jLabelEmplois) {
+            views.jPanelEmplois.setBackground(new Color(0, 102, 102));
             if(rol.equals("Administrador")){
                 views.jTabbedPestañas.setSelectedIndex(4);
                 
@@ -239,7 +245,7 @@ public class EmployeesController implements ActionListener, MouseListener, KeyLi
                 cleanTxt();
                 listAllEmployees();
             }else{
-                views.jTabbedPestañas.setEnabledAt(3, false);
+                views.jTabbedPestañas.setEnabledAt(4, false);
                 views.jLabelEmplois.setEnabled(false);
                 JOptionPane.showMessageDialog(null, "No puedes accerder a esta vista.");
             }

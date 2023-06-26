@@ -4,10 +4,13 @@
  */
 package views;
 
+import controllers.CustomersController;
 import controllers.EmployeesController;
 import controllers.SettingsController;
+import models.Customers;
 import models.Employees;
 import models.EmployeesDao;
+import models.CustomersDao;
 import static models.EmployeesDao.full_name_user;
 import static models.EmployeesDao.rol_user;
 
@@ -20,6 +23,11 @@ public class SystemView extends javax.swing.JFrame {
     //Empleados
     Employees employee = new Employees();
     EmployeesDao employeeDao = new EmployeesDao();
+    
+    //Clientes
+    Customers customer = new Customers();
+    CustomersDao customerDao = new CustomersDao();
+    
     
     public SystemView() {
         initComponents();
@@ -37,6 +45,10 @@ public class SystemView extends javax.swing.JFrame {
         //Controlador de empleados
         EmployeesController employee_acount = new EmployeesController(employee, employeeDao, this);
         employee_acount.listAllEmployees();
+        
+        //controlador de clientes
+        CustomersController customer_acount = new CustomersController(customer, customerDao, this);
+        customer_acount.listAllCustomers();
     }
     
     public String tittleInterface(){
@@ -99,7 +111,7 @@ public class SystemView extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         txt_search_product = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        customer_table = new javax.swing.JTable();
+        products_table = new javax.swing.JTable();
         jPanel5 = new javax.swing.JPanel();
         jPanel13 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
@@ -172,7 +184,7 @@ public class SystemView extends javax.swing.JFrame {
         txt_search_customer = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        customer_table = new javax.swing.JTable();
         jPanelEmployees = new javax.swing.JPanel();
         jPanel15 = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
@@ -376,16 +388,17 @@ public class SystemView extends javax.swing.JFrame {
         jPanelEmplois.setLayout(jPanelEmploisLayout);
         jPanelEmploisLayout.setHorizontalGroup(
             jPanelEmploisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelEmploisLayout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelEmploisLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabelEmplois, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanelEmploisLayout.setVerticalGroup(
             jPanelEmploisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelEmploisLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabelEmplois, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanelEmploisLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabelEmplois, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanelEmplois, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 270, 200, 35));
@@ -669,7 +682,7 @@ public class SystemView extends javax.swing.JFrame {
         txt_search_product.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jPanel4.add(txt_search_product, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 310, 165, 30));
 
-        customer_table.setModel(new javax.swing.table.DefaultTableModel(
+        products_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -688,7 +701,7 @@ public class SystemView extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(customer_table);
+        jScrollPane1.setViewportView(products_table);
 
         jPanel4.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 920, 110));
 
@@ -1130,26 +1143,30 @@ public class SystemView extends javax.swing.JFrame {
                     .addComponent(jLabel20)
                     .addComponent(txt_customer_telephone, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_register_customer))
-                .addGap(30, 30, 30)
-                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel21)
-                    .addComponent(txt_customer_email, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel18)
-                    .addComponent(txt_customer_fullname, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_update_customer))
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel14Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
+                        .addGap(33, 33, 33)
                         .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txt_customer_addres, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel19))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                            .addComponent(jLabel21)
+                            .addComponent(txt_customer_email, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel18)
+                            .addComponent(txt_customer_fullname, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel14Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_update_customer)))
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel14Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                         .addComponent(btn_delete_customer)
                         .addGap(18, 18, 18)
                         .addComponent(btn_cancel_customer)
-                        .addGap(32, 32, 32))))
+                        .addGap(32, 32, 32))
+                    .addGroup(jPanel14Layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel19)
+                            .addComponent(txt_customer_addres, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
 
         jPanel6.add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 20, 920, 270));
@@ -1167,15 +1184,12 @@ public class SystemView extends javax.swing.JFrame {
         jPanel6.add(txt_search_customer, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 310, 165, 30));
         jPanel6.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(-452, -427, -1, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        customer_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
-                "Identificacion", "Nombre completo", "Direccion", "Telefono", "Email"
+                "Identificacion", "Nombre completo", "Telefono", "Email", "Direccion"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -1186,7 +1200,7 @@ public class SystemView extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane4.setViewportView(jTable1);
+        jScrollPane4.setViewportView(customer_table);
 
         jPanel6.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, 910, 120));
 
@@ -1221,7 +1235,7 @@ public class SystemView extends javax.swing.JFrame {
         jLabel30.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel30.setText("Contraseña");
 
-        cmb_rol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "   ", "Administrador", "Auxiliar" }));
+        cmb_rol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Administrador", "Auxiliar" }));
         cmb_rol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmb_rolActionPerformed(evt);
@@ -1398,10 +1412,7 @@ public class SystemView extends javax.swing.JFrame {
         jLabel38.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel38.setText("ID");
 
-        cmb_suppliers_city.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hurlingham", "San Miguel", "Morón", "Palomar", "Castelar", "Ituzaingó", "Bella Vista", "Muñiz" }));
-
-        txt_suppliers_id.setEditable(false);
-        txt_suppliers_id.setEnabled(false);
+        cmb_suppliers_city.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Hurlingham", "San Miguel", "Morón", "Palomar", "Castelar", "Ituzaingó", "Bella Vista", "Muñiz" }));
 
         btn_updatee_supplier.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn_updatee_supplier.setText("Modificar");
@@ -2080,11 +2091,11 @@ public class SystemView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     public javax.swing.JTabbedPane jTabbedPestañas;
-    public javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField2;
     public javax.swing.JLabel lbl_name_employee;
     public javax.swing.JLabel lbl_name_rol;
     private javax.swing.JLabel logo;
+    public javax.swing.JTable products_table;
     private javax.swing.JTable purchases_table;
     public javax.swing.JTable sales_table;
     private javax.swing.JTable supplier_table;
@@ -2094,10 +2105,10 @@ public class SystemView extends javax.swing.JFrame {
     public javax.swing.JTextField txt_category_id;
     public javax.swing.JTextField txt_category_name;
     public javax.swing.JTextField txt_customer_addres;
-    private javax.swing.JTextField txt_customer_email;
+    public javax.swing.JTextField txt_customer_email;
     public javax.swing.JTextField txt_customer_fullname;
     public javax.swing.JTextField txt_customer_id;
-    private javax.swing.JTextField txt_customer_telephone;
+    public javax.swing.JTextField txt_customer_telephone;
     public javax.swing.JTextField txt_employee_addres;
     public javax.swing.JTextField txt_employee_email;
     public javax.swing.JTextField txt_employee_fullname;

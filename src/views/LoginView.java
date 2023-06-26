@@ -1,6 +1,7 @@
 package views;
 
 import controllers.LoginController;
+import java.awt.event.KeyEvent;
 import models.Employees;
 import models.EmployeesDao;
 
@@ -75,6 +76,11 @@ public class LoginView extends javax.swing.JFrame {
                 txt_passwordActionPerformed(evt);
             }
         });
+        txt_password.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_passwordKeyPressed(evt);
+            }
+        });
         jPanel1.add(txt_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 220, 210, 35));
 
         btn_enter.setText("ingresar");
@@ -110,6 +116,11 @@ public class LoginView extends javax.swing.JFrame {
     private void btn_enterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btn_enterKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_enterKeyPressed
+
+    private void txt_passwordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_passwordKeyPressed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_txt_passwordKeyPressed
 
     /**
      * @param args the command line arguments
