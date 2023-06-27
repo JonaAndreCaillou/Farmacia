@@ -1,12 +1,16 @@
-# Farmacia 0.2
+# Farmacia 0.3
 Programa de administracion de una farmacia
 
-#Update
+#Update 0.3
+Se agrego Controladores a la pestaña Proveedores y a la pestaña Categoria.
+Ahora se puede registrar, leer, modificar y eliminar datos de estas pestañas mensionadas.
+
+#LastUpdate 0.2
 Se le agregó controladores a las pestaña cliente.
 La cual puede Registrar, leer, modificar y eliminar Clientes.
 Se agregaron detalles de vista activando y desactivando los botones de Registrar,Modificar,Eliminar y Cancelar en el momento que sea necesario.
 
-#LastUpdate
+#LastUpdate 0.1
 Se le agregó controladores a la pestaña Empleados.
 La cual puede Registrar, leer, modificar y eliminar Empleados.
 
