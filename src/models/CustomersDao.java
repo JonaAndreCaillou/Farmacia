@@ -57,8 +57,8 @@ public class CustomersDao {
     public List listCustomerQuery(String value) {
         List<Customers> list_customers = new ArrayList();
 
-        String query = "SELECT * FROM customers ORDER BY full_name ASC";
-        String query_search_customer = "SELECT * FROM customers WHERE id LIKE '%" + value + "%' ORDER BY id ASC";
+        String query = "SELECT * FROM customers ORDER BY id desc";
+        String query_search_customer = "SELECT * FROM customers WHERE id LIKE '%" + value + "%' ORDER BY id desc";
 
         try {
             conn = cn.getConnection();
@@ -87,6 +87,8 @@ public class CustomersDao {
         return list_customers;
 
     }
+    
+    
 
     //Modificar Clientes
     public boolean updateCustomerQuery(Customers customer) {

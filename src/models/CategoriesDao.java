@@ -21,7 +21,7 @@ public class CategoriesDao {
 
     //Registrar caterogias
     public boolean registerCategoryQuery(Categories category) {
-        String query = "INSERT INTO categories (name,created,updated) VALUES (?,?,?)";
+        String query = "INSERT INTO categories (id,name,created,updated) VALUES (?,?,?,?)";
 
         Timestamp datetime = new Timestamp(new Date().getTime());
 
@@ -29,9 +29,10 @@ public class CategoriesDao {
             conn = cn.getConnection();
             pst = conn.prepareStatement(query);
 
-            pst.setString(1, category.getName());
-            pst.setTimestamp(2, datetime);
+            pst.setInt(1, category.getId());
+            pst.setString(2, category.getName());
             pst.setTimestamp(3, datetime);
+            pst.setTimestamp(4, datetime);
             pst.execute();
 
             return true;
@@ -47,7 +48,7 @@ public class CategoriesDao {
         List<Categories> list_category = new ArrayList();
 
         String query = "SELECT * FROM categories";
-        String query_search_category = "SELECT * FROM categories WHERE name LIKE '%" + value + "%'";
+        String query_search_category = "SELECT * FROM categories WHERE id LIKE '%" + value + "%'";
 
         try {
             conn = cn.getConnection();

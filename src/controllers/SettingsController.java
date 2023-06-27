@@ -35,6 +35,9 @@ public class SettingsController implements MouseListener {
         if (e.getSource() == views.jLabelCustomers) {
             views.jPanelCustomers.setBackground(new Color(0, 102, 102));
         }
+        if (e.getSource() == views.jLabelSuppliers) {
+            views.jPanelSuppliers.setBackground(new Color(0, 102, 102));
+        }
     }
 
     @Override

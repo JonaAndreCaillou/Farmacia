@@ -4,15 +4,21 @@
  */
 package views;
 
+import controllers.CategoriesController;
 import controllers.CustomersController;
 import controllers.EmployeesController;
 import controllers.SettingsController;
+import controllers.SuppliersController;
+import models.Categories;
+import models.CategoriesDao;
 import models.Customers;
 import models.Employees;
 import models.EmployeesDao;
 import models.CustomersDao;
 import static models.EmployeesDao.full_name_user;
 import static models.EmployeesDao.rol_user;
+import models.Suppliers;
+import models.SuppliersDao;
 
 /**
  *
@@ -27,6 +33,14 @@ public class SystemView extends javax.swing.JFrame {
     //Clientes
     Customers customer = new Customers();
     CustomersDao customerDao = new CustomersDao();
+    
+    //Proveedores
+    Suppliers supplier = new Suppliers();
+    SuppliersDao supplierDao = new SuppliersDao();
+    
+    //Categorias
+    Categories category = new Categories();
+    CategoriesDao categoryDao = new CategoriesDao();
     
     
     public SystemView() {
@@ -49,6 +63,14 @@ public class SystemView extends javax.swing.JFrame {
         //controlador de clientes
         CustomersController customer_acount = new CustomersController(customer, customerDao, this);
         customer_acount.listAllCustomers();
+        
+        //Controlardor de Proveedores
+        SuppliersController supplier_acount = new SuppliersController(supplier, supplierDao, this);
+        supplier_acount.listAllSuppliers();
+        
+        //controlador de categorias
+        CategoriesController category_acount = new CategoriesController(category, categoryDao, this);
+        category_acount.listAllCategories();
     }
     
     public String tittleInterface(){
@@ -1516,10 +1538,7 @@ public class SystemView extends javax.swing.JFrame {
 
         supplier_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "ID", "Nombre", "Descripción", "Dirección", "Teléfono", "Correo", "Ciudad"
@@ -1549,9 +1568,6 @@ public class SystemView extends javax.swing.JFrame {
 
         jLabel41.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel41.setText("Nombre");
-
-        txt_category_id.setEditable(false);
-        txt_category_id.setEnabled(false);
 
         txt_category_name.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1632,10 +1648,7 @@ public class SystemView extends javax.swing.JFrame {
 
         category_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "ID", "Nombre"
@@ -2098,7 +2111,7 @@ public class SystemView extends javax.swing.JFrame {
     public javax.swing.JTable products_table;
     private javax.swing.JTable purchases_table;
     public javax.swing.JTable sales_table;
-    private javax.swing.JTable supplier_table;
+    public javax.swing.JTable supplier_table;
     private javax.swing.JTable table_all_purchases;
     public javax.swing.JTable table_all_sales;
     private javax.swing.JTextField tct_purchase_price;

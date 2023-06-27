@@ -21,22 +21,23 @@ public class SuppliersDao {
 
     //Registar proveedor
     public boolean registerSupplierQuery(Suppliers supplier) {
-        String query = "INSERT INTO suppliers (name, description,address, telephone, email, city,created, updated)"
-                + "VALUES ?,?,?,?,?,?,?,?";
+        String query = "INSERT INTO suppliers (id, name, description, address, telephone, email, city, created, updated  q)"
+                + "VALUES (?,?,?,?,?,?,?,?,?)";
 
         Timestamp datetime = new Timestamp(new Date().getTime());
 
         try {
             conn = cn.getConnection();
             pst = conn.prepareStatement(query);
-            pst.setString(1, supplier.getName());
-            pst.setString(2, supplier.getDescription());
-            pst.setString(3, supplier.getAddress());
-            pst.setString(4, supplier.getTelephone());
-            pst.setString(5, supplier.getEmail());
-            pst.setString(6, supplier.getCity());
-            pst.setTimestamp(7, datetime);
+            pst.setInt(1, supplier.getId());
+            pst.setString(2, supplier.getName());
+            pst.setString(3, supplier.getDescription());
+            pst.setString(4, supplier.getAddress());
+            pst.setString(5, supplier.getTelephone());
+            pst.setString(6, supplier.getEmail());
+            pst.setString(7, supplier.getCity());
             pst.setTimestamp(8, datetime);
+            pst.setTimestamp(9, datetime);
             pst.execute();
 
             return true;
@@ -71,8 +72,8 @@ public class SuppliersDao {
                 supplier.setName(rs.getString("name"));
                 supplier.setDescription(rs.getString("description"));
                 supplier.setAddress(rs.getString("address"));
-                supplier.setEmail(rs.getString("telephone"));
-                supplier.setTelephone(rs.getString("email"));
+                supplier.setTelephone(rs.getString("telephone"));
+                supplier.setEmail(rs.getString("email"));
                 supplier.setCity(rs.getString("city"));
 
                 list_supplier.add(supplier);

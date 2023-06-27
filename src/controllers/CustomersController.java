@@ -7,6 +7,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -17,6 +18,7 @@ import models.EmployeesDao;
 import views.SystemView;
 
 /* @author andre */
+
 public class CustomersController implements ActionListener, MouseListener, KeyListener {
 
     private Customers customer;
@@ -52,12 +54,12 @@ public class CustomersController implements ActionListener, MouseListener, KeyLi
 
         //poner en escuchar el boton cancelar
         this.views.btn_cancel_customer.addActionListener(this);
-        
-        //Botones desabilitados 
+
+        //Botones deshabilitados 
         this.views.btn_update_customer.setEnabled(false);
         this.views.btn_delete_customer.setEnabled(false);
         this.views.btn_cancel_customer.setEnabled(false);
-        
+
     }
 
     @Override
@@ -73,6 +75,7 @@ public class CustomersController implements ActionListener, MouseListener, KeyLi
                 JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios.");
 
             } else {
+
                 //Realizar registro
                 customer.setId(Integer.parseInt(views.txt_customer_id.getText().trim()));
                 customer.setFull_name(views.txt_customer_fullname.getText().trim());
@@ -96,7 +99,7 @@ public class CustomersController implements ActionListener, MouseListener, KeyLi
         } else if (e.getSource() == views.btn_update_customer) {
             //Verificar si campo ID tiene algun dato
             if (views.txt_customer_id.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Seleccione una fila de la tabla para continuar.");
+                JOptionPane.showMessageDialog(null, "Seleccione un cliente de la tabla para continuar.");
             } else {
 
                 //verificar campos vacios
@@ -114,7 +117,6 @@ public class CustomersController implements ActionListener, MouseListener, KeyLi
                     customer.setAddress(views.txt_customer_addres.getText().trim());
 
                     if (customerDao.updateCustomerQuery(customer)) {
-                       
 
                         JOptionPane.showMessageDialog(null, "Cliente modificado con éxito.");
 
@@ -142,7 +144,7 @@ public class CustomersController implements ActionListener, MouseListener, KeyLi
                     cleanTxt();
                     cleanTable();
                     listAllCustomers();
-                    
+
                     JOptionPane.showMessageDialog(null, "Cliente eliminado con éxito.");
 
                 }
@@ -151,7 +153,6 @@ public class CustomersController implements ActionListener, MouseListener, KeyLi
         } else if (e.getSource() == views.btn_cancel_customer) {
             cleanTxt();
 
-            
         }
     }
 
@@ -188,7 +189,7 @@ public class CustomersController implements ActionListener, MouseListener, KeyLi
         views.btn_update_customer.setEnabled(false);
         views.btn_delete_customer.setEnabled(false);
         views.btn_cancel_customer.setEnabled(false);
-        
+
     }
 
     public void cleanTable() {
@@ -196,15 +197,13 @@ public class CustomersController implements ActionListener, MouseListener, KeyLi
             model.removeRow(i);
             i = i - 1;
         }
-
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
 
         if (e.getSource() == views.customer_table) {
-            
-            
+
             //Para saber en que fila se hizo click
             int row = views.customer_table.rowAtPoint(e.getPoint());
 
@@ -218,15 +217,13 @@ public class CustomersController implements ActionListener, MouseListener, KeyLi
             //deshabilitar
             views.txt_customer_id.setEditable(false);
             views.btn_register_customer.setEnabled(false);
-           
-            
+
             //Se habilitan botones modificar, eliminar y cancelar
             views.btn_update_customer.setEnabled(true);
             views.btn_delete_customer.setEnabled(true);
             views.btn_cancel_customer.setEnabled(true);
-        
-        }
-        //Cuando haga click en el Label que dice Clientes
+
+        } //Cuando haga click en el Label que dice Clientes
         else if (e.getSource() == views.jLabelCustomers) {
 
             views.jPanelCustomers.setBackground(new Color(0, 102, 102));
